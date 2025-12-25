@@ -7,8 +7,11 @@
 }
 
 .slideshow {
-  width: 40rem;
   height: 25rem;
+  img {
+    height: auto;
+    width: 100%;
+  }
 }
 
 .hero {
