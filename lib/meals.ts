@@ -33,8 +33,9 @@ export async function saveMeal(meal: Omit<Meal, 'id' | 'slug' | 'image'>, image:
     }
   });
 
-   db.prepare(
+  db.prepare(
     `INSERT INTO meals (title, summary, instructions, image, slug, creator, creator_email) VALUES (@title, @summary, @instructions, @image, @slug, @creator, @creator_email)`,
   ).run(newMeal);
-  
+
+  return newMeal;
 }

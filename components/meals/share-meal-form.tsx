@@ -7,10 +7,10 @@ import { useActionState } from 'react';
 import { shareMeal } from '@/lib/actions';
 
 export const ShareMealForm = () => {
-  // const [state, formAction] = useActionState(shareMeal, null);
+  const [state, formAction, pendingState] = useActionState(shareMeal, null);
 
   return (
-    <form className={classes.form} action={shareMeal}>
+    <form className={classes.form} action={formAction}>
       <div className={classes.row}>
         <p>
           <label htmlFor="name">Your name</label>
@@ -35,7 +35,7 @@ export const ShareMealForm = () => {
       </p>
       <ImagePicker label="Your image" name="image" />
       {/* {state?.message && <p>{state?.message}</p>} */}
-      <p className={classes.actions}>{<button>{'Share Meal'}</button>}</p>
+      <p className={classes.actions}>{<button disabled={pendingState}>{'Share Meal'}</button>}</p>
     </form>
   );
 };

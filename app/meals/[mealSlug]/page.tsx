@@ -9,6 +9,22 @@ type MealDetailsPageProps = {
   params: Promise<{ mealSlug: string }>;
 };
 
+export async function generateMetadata({ params }: MealDetailsPageProps) {
+  const { mealSlug } = await params;
+  const meal = getMeal(mealSlug);
+
+  if (!meal) {
+    return {
+      title: 'Meal Not Found',
+    };
+  }
+
+  return {
+    title: 'NextLevel Food |' + meal.title,
+    description: meal.summary,
+  };
+}
+
 export default async function MealDetailsPage({ params }: MealDetailsPageProps) {
   const { mealSlug } = await params;
   const meal = getMeal(mealSlug);
